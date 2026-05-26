@@ -1,7 +1,7 @@
 ####################################################
 # LSrouter.py
-# Name: Tran Duy Hieu
-# HUID: 24022652
+# Name: Nguyen Quoc Anh
+# HUID: 24022608
 #####################################################
 import json
 import heapq
@@ -50,6 +50,7 @@ class LSrouter(Router):
         
         distance = {self.addr: 0}
         prev = {}
+        self.forwarding_table = {}
 
         pq = [(0, self.addr)]
 
@@ -73,8 +74,6 @@ class LSrouter(Router):
                     distance[v] = new_cost
                     prev[v] = u
                     heapq.heappush(pq, (new_cost, v))
-
-        self.forwarding_table = {}
 
         for dest in distance:
             if dest == self.addr:
